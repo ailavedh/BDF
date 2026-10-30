@@ -1,8 +1,8 @@
 # Lab 2: SQLite database and CRUD routes
 
-**Name:** A.Vedh Sathvik · **Registration number:** <252U1R1004> · **Section:** S-15
+**Name:** A. Vedh Sathvik · **Registration number:** 252U1R1004 · **Section:** S-15
 
-**Live link:** https://bdf-lab-2-adh8.onrender.com/books
+**Live link:** https://bdf-lab-2-adh8.onrender.com/books/
 
 ## About
 An Express server connected to a SQLite database (`books.db`) that exposes CRUD operations for a `book` table: `book(id, title, author, price, pages)`. All queries use `?` placeholders to prevent SQL injection.
@@ -10,7 +10,7 @@ An Express server connected to a SQLite database (`books.db`) that exposes CRUD 
 ## How to run
 1. Clone the repository and open the lab folder:
    ```bash
-   cd lab-02
+   cd lab-2
    ```
 2. Install dependencies:
    ```bash
@@ -49,9 +49,6 @@ Request body for POST and PUT (JSON):
 ### GET all books
 ![GET all books](screenshots/02-get-all.png)
 
-### GET one book
-![GET one book](screenshots/03-get-one.png)
-
 ### GET book not found (404)
 ![GET 404](screenshots/04-get-404.png)
 
@@ -64,14 +61,5 @@ Request body for POST and PUT (JSON):
 ### DELETE a book (200)
 ![DELETE book](screenshots/07-delete.png)
 
-### Database check in SQLite CLI after POST, PUT and DELETE
-![CLI after changes](screenshots/01-cli-initial.png)
-
 ### Live deployment on Render
 ![Render live](screenshots/09-render-live.png)
-
-## Notes
-- **Problem:** `npm run dev` said "Missing script". **Fix:** added the `dev` script to `package.json`.
-- **Problem:** `Cannot GET /` in the browser. **Fix:** the routes are under `/books/`, so I opened `/books/` and also added a `/` route.
-- **Problem:** `request.body` was empty in POST. **Fix:** used `express.json()` and set Postman Body to raw → JSON.
-- **Deployment:** hosted on Render's free plan. The filesystem is ephemeral, so books added on the live site reset to the committed `books.db` after a restart or redeploy. The service also sleeps after inactivity, so the first request can take up to a minute.
