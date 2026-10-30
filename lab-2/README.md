@@ -2,7 +2,7 @@
 
 **Name:** A.Vedh Sathvik · **Registration number:** <252U1R1004> · **Section:** S-15
 
-**Live link:** https://<your-service-name>.onrender.com
+**Live link:** https://bdf-lab-2-adh8.onrender.com/books
 
 ## About
 An Express server connected to a SQLite database (`books.db`) that exposes CRUD operations for a `book` table: `book(id, title, author, price, pages)`. All queries use `?` placeholders to prevent SQL injection.
