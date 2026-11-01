@@ -1,29 +1,44 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
+const PORT = process.env.PORT || 3000
 
-// GET / : welcome text
+// Middleware to log the route and status code to the terminal
+app.use((req, res, next) => {
+  res.on('finish', () => {
+    console.log(`[${req.method}] ${req.originalUrl} -> Status: ${res.statusCode}`)
+  })
+  next()
+})
+
+// 1. GET / -> Welcome text
 app.get('/', (req, res) => {
-  res.send('Welcome to my Express server!');
-});
+  res.status(200).send('Welcome to the Express Server!')
+})
 
-// GET /about : JSON with name and section
+// 2. GET /about -> JSON with your details
 app.get('/about', (req, res) => {
-  res.json({
-    name: 'Vedh Sathvik',
-    section: 'S-15'
-  });
-});
+  res.status(200).json({
+    name: 'A. Vedh Sathvik',
+    section: 'S-15',
+  })
+})
 
-// GET /time : current date and time
+// 3. GET /time -> Current date and time
 app.get('/time', (req, res) => {
-  res.send(`Current date and time: ${new Date()}`);
-});
+  const now = new Date()
+  res.status(200).json({
+    iso: now.toISOString(),
+    local: now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+  })
+})
 
-// 404 handler: must come AFTER all other routes
+// 4. 404 route for any other path (must be last)
 app.use((req, res) => {
-  res.status(404).send('404 - Page not found');
-});
+  res.status(404).send('404 Not Found')
+})
 
-app.listen(3000, () => {
-  console.log('Server running at http://localhost:3000');
-});
+app.listen(PORT, () => {
+  console.log(`Express server running on port ${PORT}`)
+})
+
+module.exports = app
