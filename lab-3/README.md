@@ -2,7 +2,7 @@
 
 **Name:** A. Vedh Sathvik · **Registration number:** 252U1R1004 · **Section:** S-15
 
-**Live link:** https://<your-url>/books/
+**Live link:** https://bdf-lab-3-khya.onrender.com/books/
 
 ## About
 The Lab 2 book API turned into a clean REST API with search, sorting, paging, a price filter, request validation, correct status codes and one consistent JSON format. All queries use `?` placeholders.
@@ -50,13 +50,13 @@ Example: `/books/?search_q=the&min_price=250&max_price=400&order_by=price&order=
 ### Database rows
 ![Database rows](screenshots/01-db-rows.png)
 
-### Search
+### Search by title
 ![Search](screenshots/02-search.png)
 
-### Sort
+### Sort by price
 ![Sort](screenshots/03-sort.png)
 
-### Price range
+### Price range filter
 ![Price range](screenshots/04-price-range.png)
 
 ### Create book (201)
@@ -65,8 +65,14 @@ Example: `/books/?search_q=the&min_price=250&max_price=400&order_by=price&order=
 ### Validation error (400)
 ![Validation 400](screenshots/06-post-400.png)
 
-### Not found (404)
+### Book not found (404)
 ![Not found 404](screenshots/07-get-404.png)
+
+### Postman collection run
+![Postman run](screenshots/08-postman-run.png)
+
+### Book 11 on the live link
+![Live book 11](screenshots/10-live-book-11.png)
 
 ## Postman
 Import `postman/Lab3.postman_collection.json`. It has 20 requests covering success, not-found and bad-input cases. Reset the database (`sqlite3 books.db ".read seed.sql"`) before each run.
@@ -75,4 +81,4 @@ Import `postman/Lab3.postman_collection.json`. It has 20 requests covering succe
 - `order_by` is checked against a fixed list, because a column name cannot be a `?` placeholder.
 - A browser can only send GET requests, so POST, PUT and DELETE are tested in Postman, and the result is then checked with a GET in the browser.
 - Debugging practised: port conflict (EADDRINUSE), wrong import path, table-name typo, and a missing `await`.
-- **Deployment:** hosted on Render's free plan. The filesystem resets on restart, redeploy or sleep, so books created on the live site disappear and the database returns to the committed `books.db` (10 books). The first request after a sleep can take up to a minute.
+- **Deployment:** hosted on Render's free plan at https://bdf-lab-3-khya.onrender.com/books/. The filesystem resets on restart, redeploy or sleep, so books created on the live site (for example book 11) disappear and the database returns to the committed `books.db` (10 books). The first request after a sleep can take up to a minute.
